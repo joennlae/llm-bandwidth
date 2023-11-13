@@ -1,0 +1,57 @@
+
+
+[tool.pylint]
+
+# Use multiple processes to speed up Pylint.
+jobs = 4
+
+ignore-patterns = [
+  ".*.json",
+  ".*.pth",
+  ".*.core",
+  ".*.sh",
+  ".*.log",
+  ".*.txt",
+  ".*.npy",
+  ".*.png",
+  ".*.csv",
+]
+
+max-line-length = 100
+
+disable = [
+  "import-error",
+  "missing-module-docstring",
+  "invalid-name",
+  "missing-function-docstring",
+  "redefined-outer-name",
+  "missing-class-docstring",
+  "too-many-locals",
+  "too-few-public-methods",
+  "unused-import",
+  "pointless-string-statement",
+  "too-many-statements",
+  "too-many-arguments",
+  "no-name-in-module",
+  "fixme",
+  "too-many-branches",
+  "multiple-imports",
+  "duplicate-code",
+  "inconsistent-return-statements",
+  "consider-using-min-builtin",
+  "too-many-instance-attributes",
+  "consider-using-f-string",
+  "no-else-return",
+  "no-else-raise",
+  "unspecified-encoding",
+  "broad-except",
+  "redefined-builtin",
+  "trailing-newlines",
+  "dangerous-default-value",
+  "too-many-lines",
+  "broad-exception-raised",
+]
+
+reports = false
+
+score = false

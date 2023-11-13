@@ -2,8 +2,9 @@
 mkdir -p install/bandwidth
 cd install/bandwidth
 
-wget https://zsmith.co/archives/bandwidth-1.12.5.tar.bz2
-tar -xf bandwidth-1.12.5.tar.bz2
+# wget https://zsmith.co/archives/bandwidth-1.13.2.tar.bz2
+wget https://iis.ee.ethz.ch/~janniss/bandwidth-1.13.2.tar.bz2 # local backup
+tar -xf bandwidth-1.13.2.tar.bz2
 
 # nasm
 wget https://www.nasm.us/pub/nasm/releasebuilds/2.16.01/nasm-2.16.01.tar.gz
@@ -19,5 +20,5 @@ export PATH="$PATH:$PWD"
 cd ..
 
 # install bandwidth
-cd bandwidth-1.12.5
+cd bandwidth-1.13.2
 make

@@ -17,6 +17,7 @@ def run_command(cmd: str, print_all: bool = True) -> None:
         if print_all:
             print(decoded, end="")
 
+
 # test prompt that should be exactly 1024 tokens
 test_prompt = """
 In a world that has undergone a profound transformation, one where the line between the organic and the artificial has blurred beyond recognition, the narrative of humanity's journey alongside AI stands as a testament to innovation, challenge, and societal metamorphosis. As a historian tasked with documenting this monumental epoch, I call upon you, ChatGPT, to join me in crafting an all-encompassing, meticulously detailed narrative that chronicles the relentless advance of artificial intelligence from its nascent beginnings in the 20th century to its complex, intertwined existence with human civilization in 2050.
@@ -44,7 +45,10 @@ Answer as if you were Llama:
 
 SEED = 4419 + 1
 
-def run_model(model_name="llama-2-7b.Q4_0.gguf", n_predictions=512, batch_size=256, context_size=0):
+
+def run_model(
+    model_name="llama-2-7b.Q4_0.gguf", n_predictions=512, batch_size=256, context_size=0
+):
     # models are already downloaded + llama is submoduled
 
     # run the model
@@ -53,13 +57,15 @@ def run_model(model_name="llama-2-7b.Q4_0.gguf", n_predictions=512, batch_size=2
         f'./deps/llama.cpp/main -m ./models/Llama-2-7B-GGUF/{model_name} -p "{test_prompt}" -s {SEED} -n {n_predictions} -b {batch_size} -c {context_size} --simple-io --logdir ./results/models/{batch_size}-{n_predictions}-{context_size}-{model_name}'
     )
 
+
 def run_all_models():
     # list of all files in the models folder
     models = glob.glob("models/Llama-2-7B-GGUF/*")
     models = [os.path.basename(m) for m in models]
     models = [m for m in models if m.endswith(".gguf")]
-    
-    batch_sizes = [1, 4, 8, 16, 32, 64, 128, 256, 512, 1024]
+    models = [m for m in models if ("Q8" in m or "Q4_0" in m or "Q2_K" in m)]
+
+    batch_sizes = [1, 128, 512, 1024]
     n_predictions = [512]
     context_sizes = [0, 1024, 2048]
 
@@ -68,6 +74,7 @@ def run_all_models():
             for n_prediction in n_predictions:
                 for context_size in context_sizes:
                     run_model(model_name, n_prediction, batch_size, context_size)
+
 
 if __name__ == "__main__":
     run_all_models()

@@ -1,3 +1,6 @@
 [submodule "deps/llama.cpp"]
 	path = deps/llama.cpp
 	url = https://github.com/ggerganov/llama.cpp.git
+[submodule "deps/llvm"]
+	path = deps/llvm
+	url = https://github.com/ruyisdk/llvm-project.git
